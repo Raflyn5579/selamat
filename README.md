@@ -1,2 +1,276 @@
 # selamat
-selamat ulang tahun
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday bilaa</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff6b81,#ff9ff3,#feca57);
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+}
+
+.container{
+    text-align:center;
+    color:white;
+    z-index:2;
+}
+
+h1{
+    font-size:3em;
+    animation:glow 2s infinite alternate;
+}
+
+p{
+    font-size:1.2em;
+    max-width:600px;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+    background:white;
+    color:#ff4d6d;
+    font-weight:bold;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px white;
+    }
+    to{
+        text-shadow:0 0 25px white,
+                    0 0 40px #fff;
+    }
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    font-size:24px;
+    animation:fall linear infinite;    
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-100vh);
+    }
+    to{
+        transform:translateY(100vh);
+    }
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.surprise-card{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,255,255,0.95);
+    color:#ff006e;
+    padding:30px;
+    border-radius:25px;
+    width:80%;
+    max-width:500px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,0.3);
+    z-index:999;
+    animation:popUp 0.8s ease;
+}
+
+@keyframes popUp{
+    from{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(0.5);
+    }
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+    }
+}
+
+.cake{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:100px;
+    display:none;
+    z-index:998;
+    animation:bounce 1s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateX(-50%) translateY(0);
+    }
+    50%{
+        transform:translateX(-50%) translateY(-15px);
+    }
+}
+
+.firework{
+    position:fixed;
+    font-size:35px;
+    z-index:1000;
+    animation:explode 1.5s forwards;
+}
+
+@keyframes explode{
+    0%{
+        transform:scale(0);
+        opacity:1;
+    }
+    100%{
+        transform:scale(4);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🎉 Selamat Ulang Tahun🎉</h1>
+
+    <p>
+        Semoga hari ini menjadi awal dari tahun yang
+        penuh kebahagiaan, kesehatan, dan kesuksesan.
+        Terima kasih sudah menjadi bagian terindah
+        dalam hidupku. 💖
+    </p>
+
+    <button onclick="surprise()">
+        Klik Kejutannya 🎁
+    </button>
+</div>
+
+<div class="cake" id="cake">🎂</div>
+
+<script>
+
+function createHeart(){
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+    heart.innerHTML = "🎉";
+
+    heart.style.left =
+    Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+    (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    },5000);
+}
+
+setInterval(createHeart,200);
+
+function createFirework(){
+
+    const icons =
+    ["🎆","🎇","✨","💥","🌟"];
+
+    const firework =
+    document.createElement("div");
+
+    firework.classList.add("firework");
+
+    firework.innerHTML =
+    icons[Math.floor(Math.random()*icons.length)];
+
+    firework.style.left =
+    Math.random()*window.innerWidth + "px";
+
+    firework.style.top =
+    Math.random()*window.innerHeight + "px";
+
+    document.body.appendChild(firework);
+
+    setTimeout(()=>{
+        firework.remove();
+    },1500);
+}
+
+function surprise(){
+
+    document.body.style.background =
+    "linear-gradient(-45deg,#ff006e,#ff4d6d,#ffbe0b,#8338ec)";
+
+    document.body.style.backgroundSize =
+    "400% 400%";
+
+    document.body.style.animation =
+    "gradientMove 6s ease infinite";
+
+    document.getElementById("cake").style.display =
+    "block";
+
+    const card =
+    document.createElement("div");
+
+    card.classList.add("surprise-card");
+
+    card.innerHTML = `
+        <h2> Happy Birthday GaneshaBilaa </h2>
+
+        <p>
+            Selamat ulang tahun.<br><br>
+
+            Semoga setiap harimu dipenuhi
+            kebahagiaan, kesehatan, dan
+            kesuksesan. Terima kasih telah
+            menjadi bagian terindah dalam
+            hidupku. <br><br>
+
+            Semoga semua impianmu tercapai
+            dan semoga kamu selalu bahagia di setiap saat dan dimana pun kmu berada<br><br>
+
+            
+        </p>
+    `;
+
+    document.body.appendChild(card);
+
+    document.querySelector("button").style.display =
+    "none";
+
+    for(let i=0;i<40;i++){
+        setTimeout(()=>{
+            createFirework();
+        },i*150);
+    }
+
+    const fw =
+    setInterval(createFirework,800);
+
+    setTimeout(()=>{
+        clearInterval(fw);
+    },15000);
+}
+</script>
+
+</body>
+</html>
+
